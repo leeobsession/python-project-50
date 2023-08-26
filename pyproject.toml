@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "hexlet-code"
+version = "0.1.0"
+description = ""
+authors = ["leeobsession <lera03skor@gmail.com>"]
+readme = "README.md"
+packages = [{include = "gendiff"}]
+repository = "https://github.com/leeobsession/python-project-50"
+
+
+[tool.poetry.dependencies]
+python = "^3.10"
+flask = "^2.3.3"
+flake8 = "^6.1.0"
+pytest-cov = "^4.1.0"
+pyyaml = "^6.0.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.poetry.scripts]
+gendiff = "gendiff.scripts.diff:main"
