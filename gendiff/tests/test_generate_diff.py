@@ -1,7 +1,7 @@
-from gendiff.gendiff import gener_diff
+from gendiff.gendiff import generate_diff
 
 
-def test_gener_diff():
+def test_generate_diff():
 
     data1 = 'gendiff/tests/fixtures/file1.json'
     data2 = 'gendiff/tests/fixtures/file2.json'
