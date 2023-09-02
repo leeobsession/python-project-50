@@ -1,6 +1,6 @@
-from gendiff.generate_diff.styl import make_stylish
-from gendiff.generate_diff.plain import make_plain
-from gendiff.generate_diff.json import make
+from gendiff.formatter.styl import make_stylish
+from gendiff.formatter.plain import make_plain
+from gendiff.formatter.json import make
 
 
 def format(form_name, form_data):
@@ -8,5 +8,7 @@ def format(form_name, form_data):
         return make_plain(form_data)
     elif form_name == 'json':
         return make(form_data)
-    else:
+    elif form_name == 'stylish':
         return make_stylish(form_data)
+    else:
+        raise ValueError('Unsupported format')
