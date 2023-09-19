@@ -1,9 +1,9 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/leeobsession/python-project-50/workflows/hexlet-check/badge.svg)](https://github.com/leeobsession/python-project-50/actions)
 
-<a href="https://codeclimate.com/github/leeobsession/python-project-49/maintainability"><img src="https://api.codeclimate.com/v1/badges/b4c90daf2fdab1160cc6/maintainability" /></a>
+[![Maintainability](https://api.codeclimate.com/v1/badges/46c511b3a6792f75844c/maintainability)](https://codeclimate.com/github/leeobsession/python-project-50/maintainability)
 
-<a href="https://codeclimate.com/github/leeobsession/python-project-50/test_coverage"><img src="https://api.codeclimate.com/v1/badges/46c511b3a6792f75844c/test_coverage" /></a>
+[![Test Coverage](https://api.codeclimate.com/v1/badges/46c511b3a6792f75844c/test_coverage)](https://codeclimate.com/github/leeobsession/python-project-50/test_coverage)
 
 
 # Difference Calculator
