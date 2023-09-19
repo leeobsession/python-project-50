@@ -1,45 +1,37 @@
-def create_diff(old_data, new_data):
-    keys = sorted(old_data.keys() | new_data.keys())
-    result = dict()
-
-    for key in keys:
-        if key not in old_data:
-            result[key] = {
+def create_diff(data1, data2):
+    all_keys = sorted(set(data1.keys()) | set(data2.keys()))
+    diff_tree = []
+    for key in all_keys:
+        if key not in data1:
+            child = {
                 'type': 'added',
-                'value': new_data[key],
-                'children': None
+                'key': key,
+                'value': data2[key]
             }
-
-        elif key not in new_data:
-            result[key] = {
+        elif key not in data2:
+            child = {
                 'type': 'removed',
-                'value': old_data[key],
-                'children': None
+                'key': key,
+                'value': data1[key]
             }
-
-        elif old_data[key] == new_data[key]:
-            result[key] = {
-                'type': 'untouched',
-                'value': old_data[key],
-                'children': None
+        elif isinstance(data1[key], dict) and isinstance(data2[key], dict):
+            child = {
+                'type': 'nested',
+                'key': key,
+                'children': create_diff(data1[key], data2[key])
             }
-
-        elif isinstance(old_data[key], dict) \
-                and isinstance(new_data[key], dict):
-            result[key] = {
-                'type': 'dictionary',
-                'value': None,
-                'children': create_diff(old_data[key], new_data[key])
+        elif data1[key] == data2[key]:
+            child = {
+                'type': 'identical',
+                'key': key,
+                'value': data1[key]
             }
-
         else:
-            result[key] = {
+            child = {
                 'type': 'changed',
-                'value': {
-                    'old_value': old_data[key],
-                    'new_value': new_data[key]
-                },
-                'children': None
+                'key': key,
+                'old_value': data1[key],
+                'new_value': data2[key]
             }
-
-    return result
+        diff_tree.append(child)
+    return diff_tree

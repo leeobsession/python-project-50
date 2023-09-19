@@ -60,7 +60,7 @@ def make_stylish(tree, depth=0):
         elif node['type'] == 'nested':
             result.append(
                 f"{INDENT * depth}    {node['key']}:"
-                f" {format_to_stylish(node['children'], depth + START_INDENT)}")
+                f" {make_stylish(node['children'], depth + START_INDENT)}")
 
     result.append(f'{INDENT * depth}}}')
     return '\n'.join(result)

@@ -1,44 +1,40 @@
-def get_val(val):
-    if isinstance(val, dict):
-        return '[complex value]'
-
-    elif val is None:
+def stringify(value):
+    if isinstance(value, (dict, list)):
+        return "[complex value]"
+    elif value is None:
         return 'null'
-
-    elif isinstance(val, bool):
-        return 'true' if val else 'false'
-
-    elif isinstance(val, str):
-        return f"'{val}'"
-
+    elif isinstance(value, bool):
+        return str(value).lower()
+    elif isinstance(value, str):
+        return f"'{value}'"
     else:
-        return val
+        return str(value)
 
 
-def make_plain(data, path=[]):
-    output = ''
+def make_plain(tree, start_path_key=''):
+    result = []
+    for node in tree:
+        current_path_key = f'{start_path_key}{node["key"]}'
+        if node['type'] == 'added':
+            result.append(
+                f"Property '{current_path_key}' "
+                f"was added with value: "
+                f"{stringify(node['value'])}")
 
-    for key, val in data.items():
-        types = val.get('type')
-        values = val.get('value')
-        children = val.get('children')
-        path_copy = path.copy()
-        path_copy.append(key)
+        elif node['type'] == 'removed':
+            result.append(f"Property '{current_path_key}' was removed")
 
-        if types == 'added':
-            output += f"Property '{'.'.join(path_copy)}'" \
-                      f" was added with value: {get_val(values)}\n"
+        elif node['type'] == 'changed':
+            result.append(
+                f"Property '{current_path_key}'"
+                f" was updated. From {stringify(node['old_value'])} "
+                f"to {stringify(node['new_value'])}")
 
-        elif types == 'removed':
-            output += f"Property '{'.'.join(path_copy)}' was removed\n"
+        elif node['type'] == 'nested':
+            new_value = make_plain(
+                node['children'],
+                f"{current_path_key}."
+            )
+            result.append(f"{new_value}")
 
-        elif types == 'changed':
-            old = get_val(values.get('old_value'))
-            new = get_val(values.get('new_value'))
-            output += f"Property '{'.'.join(path_copy)}' was updated." \
-                      f" From {old} to {new}\n"
-
-        elif types == 'dictionary':
-            output += f"{make_plain(children, path_copy)}\n"
-
-    return output.strip()
+    return '\n'.join(result)

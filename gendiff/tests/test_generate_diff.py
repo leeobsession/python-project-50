@@ -1,23 +1,52 @@
-from gendiff.gendiff import generate_diff
+from gendiff.generate_diff import generate_diff
+import pytest
+import os
 
 
-def test_generate_diff():
+FILES = [
+    ('file1.json', 'file2.json', 'result_stylish.txt', 'stylish'),
+    ('file1.json', 'file2.json', 'result_plain.txt', 'plain'),
+    ('file1.json', 'file2.json', 'result_json.txt', 'json'),
+    ('file1.yml', 'file2.yml', 'result_stylish.txt', 'stylish'),
+    ('file1.yml', 'file2.yml', 'result_plain.txt', 'plain'),
+    ('file1.yml', 'file2.yml', 'result_json.txt', 'json'),
+    ('file1.yaml', 'file2.yaml', 'result_stylish.txt', 'stylish'),
+    ('file1.yaml', 'file2.yaml', 'result_plain.txt', 'plain'),
+    ('file1.yaml', 'file2.yaml', 'result_json.txt', 'json'),
+    ('file3.json', 'file4.json', 'result_stylish2.txt', 'stylish'),
+    ('file3.json', 'file4.json', 'result_plain2.txt', 'plain'),
+    ('file3.json', 'file4.json', 'result_json2.txt', 'json'),
+    ('file3.yml', 'file4.yml', 'result_stylish2.txt', 'stylish'),
+    ('file3.yml', 'file4.yml', 'result_plain2.txt', 'plain'),
+    ('file3.yml', 'file4.yml', 'result_json2.txt', 'json'),
+    ('file3.yaml', 'file4.yaml', 'result_stylish2.txt', 'stylish'),
+    ('file3.yaml', 'file4.yaml', 'result_plain2.txt', 'plain'),
+    ('file3.yaml', 'file4.yaml', 'result_json2.txt', 'json')
+]
 
-    data1 = 'gendiff/tests/fixtures/file_json1.json'
-    data2 = 'gendiff/tests/fixtures/file_json2.json'
+FILES_EXCEPTION = [
+    ('file1.json', 'file2.json', 'txt'),
+    ('file3.yml', 'file4.yml', 'doc')
+]
 
-    result_json = \
-        open('gendiff/tests/fixtures/result_json.txt').read()
-    result_stylish = \
-        open('gendiff/tests/fixtures/result_stylish.txt').read()
-    result_plain = \
-        open('gendiff/tests/fixtures/result_plain.txt').read()
 
-    diff_json1 = generate_diff(data1, data2)
-    diff_json2 = generate_diff(data1, data1)
-    diff_plain = generate_diff(data1, data2, 'plain')
+def get_path(filename):
+    return os.path.join('gendiff/tests/fixtures', filename)
 
-    assert generate_diff(data1, data2, 'stylish') == result_stylish
-    assert generate_diff(data1, data2) == result_stylish
-    assert generate_diff(data1, data2, 'plain') == result_plain
-    assert generate_diff(data1, data2, 'json') == result_json
+
+@pytest.mark.parametrize('file1, file2, result, formatter', FILES)
+def test_generate_diff(file1, file2, result, formatter):
+    with open(get_path(result), 'r') as res:
+        result_string = '\n'.join(res.read().splitlines())
+    assert generate_diff(get_path(file1), get_path(file2), formatter) == result_string
+
+
+@pytest.mark.parametrize('file1, file2, formatter', FILES_EXCEPTION)
+def test_exception(file1, file2, formatter):
+    with pytest.raises(ValueError) as e:
+        generate_diff(
+            get_path(file1),
+            get_path(file2),
+            formatter)
+        assert str(e.value) == 'Unsupported format'
+

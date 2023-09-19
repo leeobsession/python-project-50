@@ -1,124 +1,28 @@
-{
-    "common": {
-        "children": {
-            "follow": {
-                "children": null,
-                "type": "added",
-                "value": false
-            },
-            "setting1": {
-                "children": null,
-                "type": "untouched",
-                "value": "Value 1"
-            },
-            "setting2": {
-                "children": null,
-                "type": "removed",
-                "value": 200
-            },
-            "setting3": {
-                "children": null,
-                "type": "changed",
-                "value": {
-                    "new_value": null,
-                    "old_value": true
-                }
-            },
-            "setting4": {
-                "children": null,
-                "type": "added",
-                "value": "blah blah"
-            },
-            "setting5": {
-                "children": null,
-                "type": "added",
-                "value": {
-                    "key5": "value5"
-                }
-            },
-            "setting6": {
-                "children": {
-                    "doge": {
-                        "children": {
-                            "wow": {
-                                "children": null,
-                                "type": "changed",
-                                "value": {
-                                    "new_value": "so much",
-                                    "old_value": ""
-                                }
-                            }
-                        },
-                        "type": "dictionary",
-                        "value": null
-                    },
-                    "key": {
-                        "children": null,
-                        "type": "untouched",
-                        "value": "value"
-                    },
-                    "ops": {
-                        "children": null,
-                        "type": "added",
-                        "value": "vops"
-                    }
-                },
-                "type": "dictionary",
-                "value": null
-            }
-        },
-        "type": "dictionary",
-        "value": null
-    },
-    "group1": {
-        "children": {
-            "baz": {
-                "children": null,
-                "type": "changed",
-                "value": {
-                    "new_value": "bars",
-                    "old_value": "bas"
-                }
-            },
-            "foo": {
-                "children": null,
-                "type": "untouched",
-                "value": "bar"
-            },
-            "nest": {
-                "children": null,
-                "type": "changed",
-                "value": {
-                    "new_value": "str",
-                    "old_value": {
-                        "key": "value"
-                    }
-                }
-            }
-        },
-        "type": "dictionary",
-        "value": null
-    },
-    "group2": {
-        "children": null,
+[
+    {
         "type": "removed",
-        "value": {
-            "abc": 12345,
-            "deep": {
-                "id": 45
-            }
-        }
+        "key": "follow",
+        "value": false
     },
-    "group3": {
-        "children": null,
+    {
+        "type": "identical",
+        "key": "host",
+        "value": "hexlet.io"
+    },
+    {
+        "type": "removed",
+        "key": "proxy",
+        "value": "123.234.53.22"
+    },
+    {
+        "type": "changed",
+        "key": "timeout",
+        "old_value": 50,
+        "new_value": 20
+    },
+    {
         "type": "added",
-        "value": {
-            "deep": {
-                "id": {
-                    "number": 45
-                }
-            },
-            "fee": 100500
-        }
+        "key": "verbose",
+        "value": true
     }
-}
+]

@@ -4,7 +4,7 @@ import os
 import argparse
 
 
-def parser(path):
+def load_data(path):
     _, ext = os.path.splitext(path)
     with open(path, 'r') as file:
         if ext == '.json':
