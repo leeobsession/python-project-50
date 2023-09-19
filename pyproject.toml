@@ -25,4 +25,4 @@ flake8 = "^5.0.4"
 
 
 [tool.poetry.scripts]
-gendiff = "gendiff.scripts.diff:main"
+gendiff = "gendiff.scripts.gendiff:main"
