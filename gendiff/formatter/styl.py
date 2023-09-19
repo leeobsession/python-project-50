@@ -31,7 +31,7 @@ def build_string(depth, marker, key, value):
            f'{stringify(value, depth + START_INDENT)}'
 
 
-def make_stylish(tree, depth=0): 
+def make_stylish(tree, depth=0): # noqa: make_stylish
     result = ['{']
     for node in tree:
         if node['type'] == 'identical':

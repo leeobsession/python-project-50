@@ -38,7 +38,8 @@ def get_path(filename):
 def test_generate_diff(file1, file2, result, formatter):
     with open(get_path(result), 'r') as res:
         result_string = '\n'.join(res.read().splitlines())
-    assert generate_diff(get_path(file1), get_path(file2), formatter) == result_string
+    diff = generate_diff(get_path(file1), get_path(file2), formatter)
+    assert diff == result_string
 
 
 @pytest.mark.parametrize('file1, file2, formatter', FILES_EXCEPTION)
@@ -49,4 +50,3 @@ def test_exception(file1, file2, formatter):
             get_path(file2),
             formatter)
         assert str(e.value) == 'Unsupported format'
-
