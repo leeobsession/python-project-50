@@ -5,6 +5,7 @@
 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/46c511b3a6792f75844c/test_coverage)](https://codeclimate.com/github/leeobsession/python-project-50/test_coverage)
 
+[![Python CI](https://github.com/leeobsession/python-project-50/workflows/Python%20CI/badge.svg)](https://github.com/leeobsession/python-project-50/actions?query=workflow%3A%22Python+CI%22)
 
 # Difference Calculator
 
