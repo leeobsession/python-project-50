@@ -31,7 +31,7 @@ FILES_EXCEPTION = [
 
 
 def get_path(filename):
-    return os.path.join('gendiff/tests/fixtures', filename)
+    return os.path.join('tests/fixtures', filename)
 
 
 @pytest.mark.parametrize('file1, file2, result, formatter', FILES)

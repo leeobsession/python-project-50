@@ -3,9 +3,9 @@ import pytest
 
 
 FILES = [
-    'gendiff/tests/fixtures/file1.json',
-    'gendiff/tests/fixtures/file1.yml',
-    'gendiff/tests/fixtures/file1.yaml'
+    'tests/fixtures/file1.json',
+    'tests/fixtures/file1.yml',
+    'tests/fixtures/file1.yaml'
 ]
 
 
