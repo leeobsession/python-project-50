@@ -33,6 +33,7 @@ FILES_EXCEPTION2 = [
     ('file1.txt', 'file2.json')
 ]
 
+
 def get_path(filename):
     return os.path.join('tests/fixtures', filename)
 
@@ -53,6 +54,7 @@ def test_exception(file1, file2, formatter):
             get_path(file2),
             formatter)
         assert str(e.value) == 'Unsupported format'
+
 
 @pytest.mark.parametrize('file1, file2', FILES_EXCEPTION2)
 def test_exception2(file1, file2):

@@ -1,5 +1,5 @@
-from gendiff.formatter.styl import stringify
 from gendiff.formatter.plain import stringify
+
 
 def test_formatter():
     assert stringify(True) == 'true'
