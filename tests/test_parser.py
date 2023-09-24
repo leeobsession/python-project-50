@@ -1,15 +1,9 @@
 from gendiff.parser import load_data
+from tests.fixtures import testing_constants
 import pytest
 
 
-FILES = [
-    'tests/fixtures/file1.json',
-    'tests/fixtures/file1.yml',
-    'tests/fixtures/file1.yaml'
-]
-
-
-@pytest.mark.parametrize('file', FILES)
+@pytest.mark.parametrize('file', testing_constants.FILES_PARSER)
 def test_load_data(file):
     assert load_data(file) == {
         'host': 'hexlet.io',
